@@ -1,0 +1,149 @@
+https://stackoverflow.com/questions/45288598/pandas-insert-data-into-mysql
+https://csvkit.readthedocs.io/en/latest/
+https://insightsndata.com/sql-queries-on-csv-using-python-24a472fe53b1
+https://pythontutor.com/render.html#mode=display
+https://pypi.org/project/pandas-profiling/2.13.0/
+https://github.com/sudh9931/Big-Data-installation/blob/main/big%20data%20installation.txt
+
+https://medium.com/nerd-for-tech/pandas-profiling-4cc99cbc0df5
+https://www.scribbr.com/frequently-asked-questions/error-in-a-linear-regression-model/
+https://www.analyticsvidhya.com/blog/2021/10/building-an-end-to-end-logistic-regression-model/
+https://github.com/akmand/datasets
+https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html
+https://github.com/c17hawke/Python
+https://github.com/Abhayparashar31/free-programming-books/blob/master/books/free-programming-books.md
+https://www.analyticsvidhya.com/blog/2021/06/understanding-random-forest/
+https://github.com/saisubhasish
+https://github.com/dharavathramdas101/Insurance-Premium-Prediction-ML-Project
+https://github.com/SwatiR20?tab=repositories
+https://medium.com/geekculture/10-automated-eda-libraries-at-one-place-ea5d4c162bbb
+@@@@@@@@@@@@@@@@@@@@@@@
+https://grow.google/certificates/interview-warmup/ ----> Interview session.
+
+https://github.com/sunnysavita10/Naive-Bayes
+
+https://intellipaat.com/blog/interview-question/machine-learning-interview-questions/
+-----------------------------------------------------------------------------------------
+Interview practice :-> https://grow.google/certificates/interview-warmup/
+
+https://medium.com/analytics-vidhya/use-naive-bayes-algorithm-for-categorical-and-numerical-data-classification-935d90ab273f
+https://github.com/codebasics/interview-help/blob/main/sde-interview-prep.md
+https://www.beamjobs.com/resumes/data-science-resume-example-guide
+
+https://www.scribbr.com/category/statistics/
+https://github.com/sandeepbandi924/Census_Income_Prediction/tree/main/src = project census income
+https://github.com/Sankeerth-S-Narayan
+https://github.com/RohithNarayananS?tab=repositories
+https://github.com/ksdiwe?tab=repositories
+
+https://www.analyticsvidhya.com/blog/tag/interview-questions/page/4/
+https://www.interviewbit.com/data-science-interview-questions/#explain-sampling-techniques-and-its-advantages
+
+https://github.com/bhanu0925?tab=repositories
+
+https://github.com/herbert0419  project related......
+https://docs.google.com/document/d/1tKwp9XLEwnQ3fPJ28sf0JhOKcQqaBMX5/edit  :;:HLD
+--------------------------------------------------------------------------------------------------------------------------
+DL
+CNN & ANN Visualization Link :- https://adamharley.com/nn_vis/
+
+Jovian Notebook CNN :- https://jovian.com/paulbindass/convolutional-neural-network-world#C4
+
+CNN Explainer :- https://poloclub.github.io/cnn-explainer/
+
+
+Invariance in CNN :- https://stats.stackexchange.com/questions/208936/what-is-translation-invariance-in-computer-vision-and-convolutional-neural-netwo
+
+
+Kernels :- https://setosa.io/ev/image-kernels/
+
+Feature Visulaization :- https://distill.pub/2017/feature-visualization/
+
+--------------------------------------------------------------------------------------------------------------------------------
+@@@@@@ Data science material => https://github.com/CornelliusYW/Data_Science_Learning_Material
+
+
+Machine learning Interview question
+Explain the intuition behind Gradient Descent algorithm | MLStack.Cafe 
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Resume template -> https://mail.google.com/mail/u/0/#inbox/FMfcgzGtvsZDDMvqCNNfhrMrwgMGxRZB
+https://novoresume.com/editor/resume/31c553d0-96eb-11ed-a89a-7d393e507bba
+https://flowcv.com/app/resume/customization
+https://flowcv.com/app/resume/content
+https://flowcv.com/resume-templates
+"Degree apply "
+
+
+https://internship.ineuron.ai/project/submit/Thyroid-Disease-Detection/641bed5f9d9344f9c2bfabe7
+
+deep learning project
+https://github.com/entbappy/End-to-end-Sign-Language-Detection
+
+#######################################################
+Big Data --> 
+https://filezilla-project.org/download.php?platform=win64
+
+
+##################################################################################################
+Hiring........
+https://jobs.siemens.com/careers/job/563156115718027
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Deep learning Interview question
+
+https://drive.google.com/drive/folders/18MPLZgukG_RuFRMxV_K6YdTZmw-PWfVU
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+NLP BOOKS :  1.https://www.amazon.com/Practical-Natural-Language-Processing-Pragmatic/dp/1492054054
+             2.https://www.amazon.com/Natural-Language-Processing-Transformers-Applications/dp/1098103246
+             3.https://web.stanford.edu/~jurafsky/slp3/ed3book_jan72023.pdf
+Data Engineer books: https://www.packtpub.com/product/cracking-the-data-engineering-interview/9781837630776
+NLP doc GitHub:  https://github.com/xinntao/ESRGAN
+
+NLP doc GitHub:  https://github.com/philschmid
+https://peterbloem.nl/blog/transformers
+@@@@@@@@@@@@@@@@@@@@@@@@
+SQL --> https://github.com/Namrta08/BIG_DATA_BOOTCAMP/tree/main/SQL%20CHALLENGE%20QUESTIONS
+https://www.udemy.com/course/aws-machine-learning/
+https://aws.amazon.com/certification/certified-machine-learning-specialty/?trk=662aeb66-1ee5-4842-b706-60c6a1b4f187&sc_channel=ps&ef_id=CjwKCAjwvpCkBhB4EiwAujULMtm2EWQUG_pNlANfxDEMyV4nGmkTCEWbY2TDuQgkeMTCusB8UT_zuxoC2yIQAvD_BwE:G:s&s_kwcid=AL!4422!3!467351734234!e!!g!!machine%20learning%20aws%20certification!11138243483!106933367462
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+cover latter for Data analyst role
+
+Himanshu Balodi
+Delhi
+himanshubalodi62@gmail.com
+9625788716
+02/02/2024
+
+Dear Granicus,
+
+I am writing to express my interest in the Data Analyst position at Granicus, as advertised on your website. As a recent graduate with a degree in BCA from Subharti University, I am eager to apply my analytical skills and passion for data to contribute to the success of your organization.
+
+During my academic journey, I developed a strong foundation in statistical analysis, data visualization, and database management. My coursework and projects have equipped me with proficiency in tools such as Python, stats, Power BI , Tableau, ML and SQL, enabling me to analyze and interpret complex datasets effectively. I am also well-versed in data visualization tools like Tableau, which I used to present findings in a clear and insightful manner.
+
+One of my notable projects involved analyzing  full stack industry ready project. This experience honed my ability to derive meaningful insights from raw data, make data-driven recommendations, and communicate findings to both technical and non-technical stakeholders.
+
+In addition to my technical skills, I possess strong problem-solving abilities and attention to detail. My proactive approach to learning and adapting to new technologies ensures that I stay abreast of industry trends and advancements. I am confident that my academic background, coupled with my dedication to continuous learning, makes me a suitable candidate for the Data Analyst role at Granicus.
+
+I am impressed by Granicus commitment to innovation and excellence in data-driven decision-making. I am excited about the prospect of contributing to your team and leveraging my skills to help Granicus  achieve its goals.
+
+Thank you for considering my application. I am enthusiastic about the opportunity to further discuss how my skills and background align with the needs of your team. I look forward to the possibility of an interview.
+
+Sincerely,
+
+Himanshu Balodi
+
+https://nathanrosidi.medium.com/how-we-oversaturated-the-data-science-job-market-52dc88ffe50c
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+yt -> https://www.youtube.com/watch?v=dQAw6fYDdOs
+linkdin -> https://www.linkedin.com/posts/himanshu-balodi-54931124b_github-himanshubalodi62insurance-premium-prediction-activity-7211998468268077056-jJkO?utm_source=share&utm_medium=member_desktop
+HLD-> https://docs.google.com/document/d/1qgH1g0A8VwIMoVU3jV6nhXsem3EwODSH/edit?usp=sharing&ouid=116210895513700352154&rtpof=true&sd=true
+LLD -> https://docs.google.com/document/d/1lhMvTtyl04dUGGk_eG_m-EOnavGrDT0z/edit?usp=sharing&ouid=116210895513700352154&rtpof=true&sd=true
+Wireframe -> https://docs.google.com/document/d/1rZrto-rYM15YddaZ0I1BtkJdkrSyEusv/edit?usp=sharing&ouid=116210895513700352154&rtpof=true&sd=true
+DPR -> https://docs.google.com/document/d/1cbe1twBZcF9oTMuXeujvMnQyQAvPbQOu/edit?usp=sharing&ouid=116210895513700352154&rtpof=true&sd=true
+PROJECT CODE -> https://github.com/himanshubalodi62/Insurance-Premium-Prediction
+Architecture -> https://docs.google.com/document/d/1uvX5Os7r3uYGRqkOryfookeMvhImeZ6l/edit?usp=sharing&ouid=116210895513700352154&rtpof=true&sd=true
