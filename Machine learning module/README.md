@@ -48,6 +48,3 @@ https://github.com/llSourcell?tab=repositories
 
 ---
 
-*Additional Resources:*   
-- People in ML to [follow on Twitter](https://www.quora.com/Who-should-I-follow-on-Twitter-to-get-useful-and-reliable-machine-learning-information "Quora.com")
-- Join the ["Wizards" Slack channel](http://wizards.herokuapp.com/ "Herokuapp.com")
