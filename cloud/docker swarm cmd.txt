@@ -1,0 +1,61 @@
+Creating service
+docker service create --name <name> --replicas <#> - p <hp:cp> image
+
+example - 
+docker service create -p 80:80 --name we nginx
+
+docker service create --replicas 3 -p 80:80 --name web nginx
+
+2) To check all service 
+docker service ls
+
+3) to check specific service
+deocker service ps <name>
+
+4) To scale up and down an existing service
+docker service scale <servicename>=3
+
+5) Details about a service
+docker service inspect --pretty <nameofservie>
+
+6) If you want to check in which container ID this service is running
+docker inspect <taskID> | grep containerID
+  
+7) To check about node
+docker inspect <nodename>
+
+8) To promote any node
+docker node promote <hostIP>
+
+9) for rolling update
+docker service update --image <imagename> <servicenaem>
+
+10) for rollback
+docker service update --rollback <service>
+
+11) If any node failed then only rollback that file
+docker service update --update-failure-action=rollback <service>
+
+12) if you want to install any application or agent in all your container then you use global replication
+docker service create -p 80:80 --name <servicename> --mode global <applicationname or imagename>
+
+
+13) deploy the stack= is a mode we can write all our requirement inside a yml file and execute that file. Like Dockerfile
+
+docker stack deploy -c <ymlfilename> <stackname>
+
+14) to check stack
+docker stack ls
+
+Docker config 
+
+* Swarm service configs, allow you to store non-sensitive information, such as configuration files in the cluster.
+* Any service can use this without the need to bind-mount configuration files into the containers or use environment varialbles.
+
+by default config file path will be /config-name in linux container
+c:\programData\Docker\config
+this will be in windows machine
+
+15) Creating config 
+docker config create <configname> <file>
+docker service create --name testservice \ --config src=testconfig, target=/var/www/colors.html\ -p 80:80 httpd

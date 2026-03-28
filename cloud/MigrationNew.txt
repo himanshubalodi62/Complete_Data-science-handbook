@@ -1,0 +1,187 @@
+Migration :
+
+Access --->Migrate --->Optimize---> Secure & Manage
+
+* Helps you to migrate on-premises VMware vms, Hyper-V vms, Physical servers, other virtualized machines and private/Public cloud instances to azure.
+
+VMware Migration;
+
+VMware Vms can be migrated using Azure Migrate server Migration with the following two options:
+* Agentless Replication: Migrate Vms without needing to install anything on them.
+* Agent based Replication : Install an agent on the VM for replication.
+
+Agentless replication is easier to deploy in VMware, But currently has some limitations,
+	* Simultaneous replication - Maximum of 300 vms migrated at a time.
+	* Vm must have 60 or less disk
+	* Vm operating system may need manual changes befor migration.
+	* Issue with linux/EUFI boot, encrypted disk/Volumes, NFS volumes, and target storage.
+
+Deployment steps
+
+* Prepare VMware servers and vms for migration ( Required in agent base and agentless) --> Configure a number of setting on VMware servers and vms.
+
+* Add the server migration tools ( Required in agent base and agentless) --> Add the Azure Migrate Server Migration tool in the Azure Migrate project.
+
+* Deploy the Azure Migrate Application ( Required in agent base and not Required agentless) -->Set up a lightweight on a Vmware vm for vm discovery and assessment.
+
+* Install the Mobillity service on Vms (NOt Required in agent base and Required agentless) --> Install the mobility service on each vm want replicate
+
+* Deploy the Azure Migrate Server Migration Replication Appliacation (NOt Required in agent base and Required agentless)
+
+* Replicate VMs enable Vm replication  (Required in agent base and agentless) --> Configure replication settings and select vms to replicate
+
+* Run a test migration  (Required in agent base and agentless) --> Run a test migration to make sure everything working as expected.
+
+* Run a full migration ( Required in agent base and agentless) --> Migrate the vms
+
+*************************************************************************************************************************************
+
+Hyper-V Migration
+* Agentless
+* Host based 
+
+source: HpyerV, 443(https)---->Data channel ----------> Microsoft azure
+        (Public internet or expressRoute with public peering)
+Microsoft Azure Recovery Services Agent replication Data to Azure.
+
+Require huge bandwidth for replication.
+
+***************************************************
+
+Agent-Based Migration Architecture
+
+Source Vmware VMs __Https(443)_---> config server  , Azure Migrate Server migration ___443(https)_Data channel_--> Azure cloud
+                 ___9443 (https)_---> Process Server             ____Public Internet or exressroute with public peering.
+
+
+Configuration Server --> User for centralized management
+Process Server --> Used for caching. Compression and encryption
+Mobility Service --> Captures all data writes from memory.
+
+Common Scenarios
+****************
+
+1) Azure Migrate : 
+	Azure migrate can assess your VMware environment for azure suitability, sizing recommendations and cost estimates. Azure Migrate supports migration of Vmware environments, using an agentless migration architecture.
+Physical server migration is also supported. Azure migrate uses a migration engine based on Azure site recovery in this case.
+
+2) Azure Database Migration Service Microsoft Data Migration  Assistant.
+	Azure Database Migration Service migrates on-premises databse to azure with minimal downtime. 
+The microsoft database migration service by performing databse compatibility assessments and schema migration.
+
+****************************************************************************************************************************************************
+steps of migration (Hyper-v to azure)
+
+1)Discover the server machines (select source like hyper-v, vmware)
+2) Azure migrate Project key to deploy the appliance (copy the and keep key)
+
+3) Hyper-v Manager --> Import virtual machine in a folder
+ 
+4) Connect with network --> Select azuremigrateSwitch
+5) Start migrate appliance
+
+6) Connect with virtaul appliance 
+7) Run assisment 
+8) Manage credentials and discover --> Give hyperv/cluster username and password
+9) Add discovery Source
+10) start discovery
+11) After discovery complete go in migrate project you will see discovered servers
+
+12) Create assessment 
+	*) Assessment type --> Azure Vm
+	*) Discovery source --> servers discovered from azure migrate appliance
+	*) Assessment properties
+	*) assessment name
+	*) Group name
+	*) Select all discovered vm left virtual appliance which you install in hyper-v host
+
+13) Test migration
+14) Cleanup migration
+15) do actual migration
+
+****************************************************************************************************************************************************
+
+Azure to Azure Site Recovery
+
+* Replicate Azure Vms to any other Azure location
+* No infrastructure to deploy
+* Automatically deploys ASR Mobility Service extension to protected machines
+* Replicates 
+	* VMS
+	* Virtual Networks
+	* Availability Sets
+	* Storage Accounts
+	* Optionally - you can specify your own Vnets. Storage Accounts and Availability sets
+
+* Replicates on HTTPS channel on 443
+	*Generates Azure engress cost for outbound traffic from primary region.
+
+__________________________Azure to Azure Architecture_____________________
+
+
+                              Cache data
+Source environment(East-us) {Vm --->          __data flow______         target region { storage account ---> vm}
+                             storage account     ___fail over___>
+
+   
+1- Vm is registered with azure site recovery 
+2- Data is continuously replicated to cache
+3- Cache is replicated to the target storage account
+4- During failover the virtual machine is added to the target environment.      
+
+****************************************************************************************************************************************************
+
+Azure To azure Site recovery (Network traffic)
+
+* ASR traffic is only outbound from protected vms.
+	* Access to ASR URLs
+		* Blob.core.windows.net 			---> storage account writes
+		* Login.mircosoftonline.com			----> authorization and authentication to the ASR URLs
+		* hypervrecoverymanagerwindowsazure.com	--> ASR service communication channel
+		* servicebus.windows.net			-----> monitoring and diagnostics
+
+*  Outbound Security rules for NSGs
+	* Site Recovery service and monitoring IP addresses(location specific)
+
+location		site recovery service ips 		site Recovery monitoring IP
+central us		40.69.144.231			52.165.34.144
+
+
+****************************************************************************************************************************************************
+
+Azure to Azure VM Protection
+
+*  Establish a recovery services vault
+	* In a different location that where your VMs reside
+
+Configuration
+	* Getting started - site Recovery
+	* NO infrastructure to prepare 
+	* Step 1: Replicate Application
+Setting
+* Target location
+	* same as vault
+* System(can) replicates
+	* VM
+	* Resource group name
+	* Virtual Network
+	* Availability Sets
+
+Replication Settings
+configure
+	* Recovery point retention
+	* App consistency
+	* Multi VM consistency
+
+Recovery Plans
+
+Use Recovery Plans to
+	* Model an app around its dependencies.
+	* Automate revovery tasms to reduce RTO
+	* Verify that you're prepared for migration or disaster recovery by ensuring that your apps are part of a recovery plan.
+	* Run test failover on recovery plans to ensure disaster recovery or migration is working as expected.
+
+
+(Microsoft.com/en-us/evalcenter/evaluate-windows-server-2019) url for download 2019 vhd file
+
+Codesizzler.in

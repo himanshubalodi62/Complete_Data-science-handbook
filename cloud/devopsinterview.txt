@@ -1,0 +1,226 @@
+terraform
+
+1) We have existing environment, Where we have resource group, vnet, and few vms. Now you need to deploy new vm so how will you deploy?
+by the help of Data Source we can fetch then information of existing resource group and vnet. and at the place of resouce group and vnet we can call Data Source for this.
+
+
+
+2) We have existing environment, Where we have resource group, vnet, and few vms. Now you need to deploy new vm so how will you deploy? and how you handle count perameter?
+Answer -
+for_each
+
+
+
+
+3) What is tfstate file.
+you know it
+
+4) Code of azurevm
+check
+
+5) If you have deploy some resources from terraform and now you create a new vm from portal so how we you manage it.
+By the help of terraform import cmd we can do this,
+collect the information about the existing resource and write terraform code for it. and the use 
+terraform init
+terraform import
+cmd
+terraform import azurerm_virtual_machine /subscriptions/c8f32571-82db-4a89-923b-7e149764bae3/resourceGroups/rg-terraform/providers/Microsoft.vm/virtualMachine/<nameofvirtualmachine>-eastus-1
+
+6) how to import existing resource group in terrafrom statefile
+write the code for existing resource group 
+do terraform init
+us terraform import cmd
+terraform import azurerm_resource_group.rg /subscriptions/c8f32571-82db-4a89-923b-7e149764bae3/resourceGroups/rg-terraform
+
+
+
+7) How you manage tfstate file.
+centerliaze storage m rakhte haim jaha se sb user access kr sake, jo same project m kaam kr rahe ho.
+
+We keep it at centerliaze location. from where all user can access it easily who are working in same project. and for security reason we also keep it in s3 bucket or blog storage beacuse if local system crash than we can loose our tfstate file.
+
+
+8) For complex import cmd
+
+terraform import azurerm_network_security_group.nsg /subscriptions/c8f32571-82db-4a89-923b-7e149764bae3/resourceGroups/rg-terraform/providers/Microsoft.Network/networkSecurityGroups/nsg-terraform
+
+terraform import azurerm_virtual_network.vnet /subscriptions/c8f32571-82db-4a89-923b-7e149764bae3/resourceGroups/rg-terraform/providers/Microsoft.Network/virtualNetworks/vnet-terraform-eastus-1
+
+9) What is terraform provisioner?
+Provisioners can be used for specific  actions on the local machine, after create the resource by the help of terraform.
+
+resource "aws_instance" "web" {
+  provisioner "local-exec" {
+    command = "echo The server's IP address is ${self.private_ip}"
+  }
+}
+
+_________Git____________
+
+
+1) What is git branch strategy?
+https://www.cloudbees.com/blog/branching-strategy
+https://pradeeploganathan.com/git/git-branching-strategies/
+
+2) Cmd for creating branch?
+git branch <nameOf barach>
+
+3) git pull , fetch checkout difference?
+When you fetch from a github or centeral location. It will store data in Remote branch you need to marge it with local branch.
+When you pull it will marge it with local branch automatically.
+https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch
+
+4) How create repo. 
+(if it is possible try to cover other thing also that will be good)
+
+_____________ansible__________________
+
+1) work flow?
+Ansible works by connecting to your nodes and pushing out a small program called Ansible modules to them. Then Ansible executed these modules and removed them after finished. The library of modules can reside on any machine, and there are no daemons, servers, or databases required.
+
+https://www.javatpoint.com/ansible-workflow
+
+
+
+2) how connect node?
+Step 1: Installing Python 3. ...
+Step 2: Enable Official RedHat Repository. ...
+Step 3: Install Ansible on RHEL 8. ...
+Step 4: Creating a Static Host Inventory File. ...
+Step 5: Setup the Ansible Control Node to Connect with the Remote Nodes.
+
+https://www.tecmint.com/install-and-configure-an-ansible-control-node/
+
+
+4) How to connect window nodes?
+https://www.ansible.com/blog/connecting-to-a-windows-host
+
+Step 1: Setting up WinRM
+Step 2: Install Pywinrm
+
+Step 3: Set Up Your Inventory File Correctly
+
+
+5) Adhoc cmd and playbook difference?
+ Ansible ad hoc commands are one-liner Linux shell commands and playbooks are like a shell script, a collective of many commands with logic. Ansible ad hoc commands come handy when you want to perform a quick task
+
+
+6) difference playbook and play?
+A playbook is a list of plays. A play is minimally a mapping between a set of hosts selected by a host specifier (usually chosen by groups but sometimes by hostname globs) and the tasks which run on those hosts to define the role that those systems will perform. There can be one or many plays in a playbook.
+
+7) What is module in ansible?
+A module is a reusable, standalone script that Ansible runs on your behalf, either locally or remotely. Modules interact with your local machine, an API, or a remote system to perform specific tasks like changing a database password or spinning up a cloud instance. Each module can be used by the Ansible API, or by the ansible or ansible-playbook programs. A module provides a defined interface, accepts arguments, and returns information to Ansible by printing a JSON string to stdout before exiting.
+
+
+8) What is ansible vault.
+Ansible Vault is an Ansible feature that helps you encrypt confidential information without compromising security.
+It keeps passwords and other sensitive data in an encrypted file rather than in plain text files. It provides password-based authentication.
+
+https://www.redhat.com/sysadmin/introduction-ansible-vault
+
+
+__________ docker___________________
+
+1) what you know about docker?
+Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+
+
+
+2) If you want to deploy any application in docker container than what will be the best approch you will use.
+
+
+3) In Docker file what is the use of copy cmd.
+If you want to copy files and directories inside a Docker Container from your Local machine, you can use the COPY instruction inside your Dockerfile.
+
+
+4) What is entrypoint in Dockerfile.
+Combining ENTRYPOINT and CMD allows you to specify the default executable for your image while also providing default arguments to that executable which may be overridden by the user. 
+
+
+
+5) when you donwload docker image it download in form of layer. If you want to edit any particular layer so how can you do that?
+The existing layers of an image are read-only, you cannot directly modify them through a new Dockerfile. With the FROM command in a Dockerfile, you take some image as a base and build on it, or add layers to it.
+FROM - <Name of image>
+RUN apk del python3 && apk add --no-cache perl
+ENTRYPOINT ["perl", "-e", "print \"Hello World\n\""]
+
+
+basically by run cmd we add and remove an image layer
+
+_________________ Kubernetes_____________________
+
+1) Component of kubernetes ( Tell him about master node component and node component)
+
+2) What is the services you know in kubernetes?
+cluster ip, node port, ingress service, loadbalancer.
+
+3) How you will troubleshoot node issue.?
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
+
+
+i)The first thing to debug in your cluster is if your nodes are all registered correctly. and check the status of nodes
+use - kubectl get nodes.
+
+ii)-  You can check details health of cluster
+use - kubectl cluster-info dump
+
+iii)- We can check log of kube-controller-manager
+
+/var/log/kube-controller-manager.log
+
+iv) - We can try to take ssh connection of node.
+
+________________________________________________
+4) how you will troubleshoot pod issue?
+
+https://www.cloudiqtech.com/how-to-debug-and-troubleshoot-common-problems-in-kubernetes-deployments/   -- dekh lena idea milega
+
+i) to check the list of down pod
+kubectl get pods -A
+
+ii)- Then I will do
+Kubectl describe pod <podname>
+
+iii) - it will show the error, ImagePullbackoff like this,
+
+iv) Image name or tag incorrect.
+Check the image name and tag and try to pull the image manually on the host using docker pull to verify.
+cmd -- Docker pull <image-name:tag>
+
+
+v )  Authentication failure related to Container registry.
+Check the secrets, roles, service principal related to your container registry and try to pull the image manually on the host using docker pull to verify.
+
+
+
+
+5) do you know about cluster ip, node port, ingress service, loadbalancer.
+
+6) What is the use of top cmd?
+top command is used to show the Linux processes. It provides a dynamic real-time view of the running system. Usually, this command shows the summary information of the system and the list of processes or threads which are currently managed by the Linux Kernel.
+
+
+7) How ingress is work? and how to configure?
+Kubernetes Ingress is an API object that provides routing rules to manage external users' access to the services in a Kubernetes cluster, typically via HTTPS/HTTP. With Ingress, you can easily set up rules for routing traffic without creating a bunch of Load Balancers or exposing each service on the node.
+
+8) what is config map in kubernetes?
+A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.
+
+
+
+___________________ Azure ___________________________________________________
+
+1) Availability set
+
+2) Azure scale set.
+
+and can read other question which allready given to you. 
+most thing focus on these above question
+
+tell him first most of my work is in azure and terraform. but i have just knowledge of these tools. 
+
+if you stuck somewhere than say this I didn't use these tools for to so long so I just need to check again. I know the concept but not able to recall right now.
+
+
+
+

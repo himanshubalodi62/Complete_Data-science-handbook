@@ -1,0 +1,22 @@
+to create a jenkins container
+docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins:latest
+
+
+to check log
+docker logs <containerID>
+
+
+to create git container
+vi Dockerfile
+FROM ubuntu
+RUN apt-get -y install git
+
+
+docker build -t git-image .
+
+FROM ubuntu
+ARG DEBIAN_FRONTEND=noniteractive
+RUN apt-get update -y
+RUN apt install apache2 -y
+ADD . /var/www/html
+ENYRYPOINT apachectl -D FOREGROUND

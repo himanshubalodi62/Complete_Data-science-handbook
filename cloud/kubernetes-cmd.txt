@@ -1,0 +1,579 @@
+to create a pod by the help of .YAML file
+kubectl create -f pod.yaml
+
+to create a pod inside any name space
+kubectl create -f pod.yaml -n=<namespacename>
+
+To check the pods
+kubectl get pods
+or
+kubectl get pods -n=<namespace>
+kubectl get pods --all-namespaces
+
+To check IP address 
+kubectl get pods --all-namespaces -o wide
+kubectl get pods -n=<namespace> -o wide
+
+If you want to describe any pod
+kubectl describe pod <podname>
+
+
+to check labels
+kubectl get pods -n=<namespace> --show-labels
+
+to edit lables
+Kubectl edit pods <podname> -n=<namespace>
+
+
+to delete pod
+kubectl delete pod <podname> 
+
+delete pod by yaml name
+kubectl delete -f pod.yaml -n=<podname>
+
+==================================================================
+to use for pod
+
+To check logs the container in a pod
+kubectl logs <podname> -n=<namespacename>
+
+to attach any pod
+kubectl attach <podname>
+kubectl attach <podname> -n=<namespacename>
+
+
+to exec in pod
+Kubectl exec hello-pod df -kh -n=<namespacename>
+
+kubectl exec -it <podname> /bin/bash -n=<namespacename>
+
+port forward local
+
+kubectl port-forword pod/<podname> 8080:80 -n=<namespacename>
+
+global port forwording
+kubectl port-forword --address 0.0.0.0 pod/<podname> 8080:80 -n=<namespacename>
+
+copy any file inside the pod
+kubectl cp <filename> <podname>:/tmp
+
+to check auth of any pod
+kubectl auth can-i create pods
+kubectl auth can-i delete pods
+kubectl auth can-i edit pods
+
+************************************************
+
+ReplicationController
+
+Replication = replicate many pods
+contoller ==> Your desired pords should be control
+We can't create replication throw cmd line
+
+apiversion:v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas:2
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: scmgalaxy/nginx-devopsschoolv1
+        ports:
+        - containerPort: 80
+
+
+
+kubectl create -f <filename> -n=<namespacename>
+
+to apply any change made in replication file
+kubectl apply -f <filename> -n=<namespacename>
+
+kubectl scale replicaset --replicas=3 rc/<nameoftherc> -n=<namespacename>
+
+Deployment
+
+replication
+controller
+versioning
+rollout
+rollback
+
+To count how many pods you have
+kubectl get pods --all-namespace | wc -l
+
+To delete all the pods with same namespace
+kubectl delete ns <namespacename>
+
+
+To make master node as worker node
+kubectl taint node mymasternode node-role.kubernetes.io/master:noschedule-
+
+
+if you want to get any details about any thing in kubernetes
+
+kubectl explain pods.spec
+
+to expose any deployment in .json or .yaml format
+
+kubectl get deploy <deploymentname> -n=<namespacename> -o yaml
+or
+kubectl get deploy <deploymentname> -n=<namespacename> -o json
+or 
+kubectl get deploy <deploymentname> -n=<namespacename> -o yaml >>mydep.yaml
+ 
+
+to check versioning of deployment
+kubectl rollout history deploy <deploymentname> -n=<namespace>
+
+ to generate ssl file 
+openssl req -new -key employee.key -out employee.csr -subje "/CN=employee/o=bitnam"
+
+
+to send certificate to admin
+openssl x509 -req -in employee.csr -ca /etc/kubernetes/pki/ca.crt -CAKey /etc/kubernetes/pki/ca.key -CAcreateserial -out /home/ec2-user/tecnotree/employee.crt -days 500
+
+to set this certificate in the laptop
+Kubectl config set-credentials employee --client-certificate=/home/ec2-user/tocnotree/employee.crt --client-key=/home/ec2-user/tecnotree/employee.key
+
+kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+
+kubectl --context=employee-context get pods
+
+
+******* For Kafka***************
+https://portworx.com/run-ha-kafka-amazon-elastic-container-service-kubernetes/
+
+https://phoenixnap.com/kb/kafka-on-kubernetes
+
+********************************************
+How to go inside a pod
+kubectl exec -it test-pod /bin/bash
+
+Emptydir location in nodes
+cd /var/lib/kubelet/pods/
+
+find any file by name 
+find . -name dev*
+
+*****************************************
+To Generate Keys
+Openssl genrsa -out ca.key 2048
+
+
+To signing Certificate request
+openssl req -new -key ca.key -subj "/CN= KUBERNTES-CA" -Out ca.csr
+
+To Sign cerificate 
+Opensslx509 -req -n ca.csr-signkey ca.key -out ca.crt
+
+Clinet Certificate
+
+To generate ceritificate for user
+Openssl genrsa -out admin.key 2048
+
+TO signing certificate request
+Openssl req -new -key admin.key -subj "/CN=kube-admin" -out admin.csr
+
+To sign certificates
+Opensslx509 -req -n admin.csr -CAkey ca.key -out admin.crt
+
+***********************
+for adding special group for that in certificate signing request add O perameter
+Openssl req -new -key admin.key -subj "/CN=kube-admin/O=system:masters" -out admin.csr
+
+client certificates for client
+
+curl https://kube-apiserver:6443/api/v1/pods --key admin.key --cert admin.crt --cacert ca.crt
+
+kubeconfig.yaml
+apiVersion: V1
+clusters:
+- cluseter:
+    certificate-authority: ca.crt
+    server: https://kube-apiserver:6643
+  name: kubernetes
+kind: config
+users:
+- name: kubernetes-admin
+  user:
+    client-sertificate: admin.crt
+    client-key: admin.key
+
+
+************************************
+
+get certificate
+
+kubectl get csr jane -o yaml 
+
+decode this certificate
+echo "LS0...Qo=" | base64 --decode
+
+
+
+
+kubectl certificate approve akshay
+
+kubectl delete csr agent-smith
+
+
+
+*************************
+to generate 
+curl https://my-kube-playground:6443/api/v1/pods\
+--key admin.key
+--cert admin.crt
+--cacert ca.crt
+
+
+kubectl get pods --kubeconfig config
+
+
+
+to kubeconfigfile
+
+--servver my-kube-playground:6443
+--client-key admin.key
+--client-certificate admin.crt
+--certificate-authority ca.crt
+
+apiVersion: v1
+
+kind: Config
+current-context: my-kube-admin@my-kube-playground
+
+clurters:
+- name: my-kube-playground
+- name: development
+- name: production
+
+contexts:
+- name: my-kue-admin@my-kube-playground
+- name; prod-user@production
+
+users:
+- name: my-kube-admin
+- name: prod-usr
+
+
+
+*******************************
+To change context of user
+
+kubectl use-context prod-user@production
+
+
+
+kubectl use-context dev-user@test-cluster-1
+
+
+/etc/kubernetes/pki/user/ca.crta.crt
+
+
+
+
+
+to check access
+
+kubectl auth can-i create deployments
+
+
+kubectl auth can-i delete nodes
+
+
+
+kubectl create secret docker-registry private-reg-cred --docker-server=myprivateregistry.com:5000 --docker-username=dock_user --docker-password=dock_password --docker-email=dock_user@myprivateregistry.com
+
+
+kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=dock_user@myprivateregistry.com
+
+
+imagePullSecrets:
+- name: private-reg-cred
+
+
+***********************************************
+To check user in pod
+kubectl exec ubuntu-sleeper -- whoami
+
+kubectl exec -it ubuntu-sleeper -- date -s '19 APR 2012 11:14:00
+
+kubectl exec webapp -- cat /log/app.log
+
+
+
+ip link  to add interface 
+ip add   to see ip address
+
+ip addr add <ip> dev eth0
+to add ip address
+
+ip route   to check routing table
+ip route add 192.168.1.0/24 via 192.168.2.1
+
+to check port forwoding is enable or not
+cat /proc/sys/net/ipv4/ip_forward
+
+***************************************************
+ps aux to check pid
+
+to create namespace in linux
+ip netns add <namespacename>
+
+to check namespaces
+ip netns
+
+to check ip of namespaces
+ip netns exec <namespacesname> ip link
+ip -n red link
+
+to check all the ip 
+arp 
+
+to check all ip in container
+ip netns exec red arp
+
+
+to create ip link cable for namespaces
+ip link add veth-re type veth peer name veth-blue
+
+to attach veth to namespaces
+ip link set veth-red netns red
+ip link set veth-blue netns blue
+
+
+to assing ip to namespaces
+ip -n red addr 192.168.15.1/24 dev veth-red
+
+
+to setup link up
+ip -n red link set veth-red up
+ip -n blue link set veth-blue up
+
+
+to ping ip add
+ip netns exec red ping 192.168.1.2
+
+to check attach ip or neighbours
+ip netns exec red arp
+
+to stablish communication among pods we create bridge. we have linux bridge and open vSwitch bridge.
+
+
+to create linux bridge
+ip link add <v-net-0> type bridge
+
+to take bridge up
+ip link set dev <v-net-0> up
+
+to delete cable between namespaces
+ip -n red link del veth-red
+
+to create ethernet for bridge
+ip link add veth-red type with peer name <veth-red-br>
+
+
+to connect ethernet for to namespaces
+ip link set veth-red netns red
+
+to connect ethernet with bridge
+ip link set <veth-red-br> master <v-net-0>
+
+to add ip address
+ip -n red addr add 192.168.15.1/24 dev veth-red
+
+to up the devices 
+ip -n red link set veth-red up
+
+to assign to ip to bridge network
+ip addr add 192.168.15.5/24 v-net-0
+
+
+to add gateway in routing table 
+ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5
+
+
+if you are not getting ping reply it could be no nat gateway available
+
+to create nat gateway
+iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
+
+if you are not able to connect internet the you need to add a default gateway
+ip netns exec <namespasename> ip route add default vai 192.168.15.5
+
+
+to ping from a namespaces
+ip netns exec <namespacename> ping 8.8.8.8
+
+if you want to make communication with other private network
+
+use portforwording and add it in routing table
+to enable port forwording
+iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT
+
+
+
+*******************************************
+Docker
+to check docker network
+docker network ls
+
+To create docker bridge
+ip link add <bridgename> type bridge
+
+to check docker namespace
+ip netns
+
+to check docker iptables
+iptables -nvl -t nat
+
+
+
+cat /etc/network/interfaces
+
+ifconfig
+
+ifconfig en3
+
+ssh node01 ifconfig ens3
+
+to check routetable
+ip r
+
+netstat -natulp | grep kube-scheduler
+
+to install weave net
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+location of webnet config file
+/etc/cni/net.d/
+
+to check all the ip
+ip addr show weave
+
+**
+KubeApi server certification location
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+
+
+ETCD server certification location
+cat /etc/kubernetes/manifests/etcd.yaml
+
+To convert crt in text
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+
+kubectl config --kubeconfig=/root/my-kube-config use-context research
+
+*******************888
+kubectl get pods -n kube-system
+
+kubectl logs
+
+kubectl logs weave-net-5gcmb -n kube-system
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+
+********************************
+location of ip in cni
+cat etc/cni/net.d/net-script.conf
+
+kube-api-server --service-cluster-ip-range ipNet
+
+to check kube-api-server
+
+ps aux | grep kube-api-server
+
+to check routing table
+iptables -L -t net | grep db-service
+
+to check kube-proxy log
+cat /var/log/kube-proxy.log
+
+
+Use Json path query to fetch node names 
+kubectl get nodes -o=jsonpath='{.items[*].metadata.name}' > /opt/outputs/node_names.txt
+
+
+
+Use JSON PATH query to retrieve the osImages of all the nodes and store it in a file
+kubectl get nodes -o jsonpath='{.items[*].status.nodeInfo.osImage}' > /opt/outputs/nodes_os.txt
+
+to create pod 
+kubectl run messaging --image=redis:alpine -l tier=msg
+
+To check labels 
+kubectl get pods --show-labels
+
+To expose any port
+kubectl expose pod messaging --name messaging-service --port 6379 --target-port 6379
+
+To describe svc 
+Kubectl describe svc <messaging-service>
+
+
+
+
+To find custom jq 
+kubectl get nodes -o json |
+      jq ".items[] | {name:.metadata.name} + .status.capacity"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

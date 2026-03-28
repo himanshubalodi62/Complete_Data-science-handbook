@@ -1,0 +1,250 @@
+Git is a software
+Github is a service(microsoft)
+Gitlab is a service(open resource)
+
+
+Working directory
+staging area
+Local Repo
+
+staging to local repo=> process called commit
+or snapshot you can say
+
+with a snapshot code will get a commit id
+by commit id you will retrive you code
+commit id is 40 characters alfanumeric 
+you can give tag(name) that is easy to remide
+
+In a local repo we have a branch
+called master branch
+
+Repository
+1) Repository ia a place where you have all
+Your code or kind of folder on server.
+2) It is a kind of folder relatit to one product
+3) changes are personal to that perticular repository
+
+Server
+1) IT store all repositories
+2) It contains metadata also
+
+Working Directory
+1) Where you see files physically and do modification
+2) AT a Time, you can work on a prticular branch
+
+Working directory =add=> Staging Area =commit=> local Repository
+
+
+Commit 
+1) Store changes in repository you will et one commit-ID
+2) It is 40 alpha-numeric characters
+3) It was SHA-1 checksum concept
+4) Even If you change one dot, commit-ID will get change
+5) It actually helps you to track the changes
+6) Commit is also named as SHA1-hash
+
+Commit-ID/version_ID/Version
+1) Reference to identify each change
+2) To identify who changes the file
+
+Tag
+Tags assign a meaningful name with a specific version
+in the repositoy once a tag is created for a particular save,
+even if you create a new commit, it will not be updated
+
+Snapshots
+1) Represents some data of particular time
+2) It is alwasys Incremental. ex. It store
+the chanes(appended data) not all file
+
+
+Branch
+
+Product is some, so one repository but different task.
+1) Each task has one separate branch.
+2) Finally merges(code) all branches 
+3) Useful when you want to work parallily
+4) Can Create one branch on the basic of another branch
+5) Changes are personal to that particular branch
+6) Default branch is Master
+7) File created in workspace will be visible
+   in any of the branch workspace untill you commit
+   Once you commit, then that file belongs to that particular
+branch.
+
+
+Advantage
+
+Free and open sources
+fast and small 
+security - Usse SHA-a checksum
+No need to powefull hardware
+easier branching
+
+yum install git
+
+To create a user in git
+
+git config --global user.name "username"
+git config --global user.email "username@gmail.com"
+
+
+Commit code
+
+git commit -m "1st code from mumbai" 
+-m stand for message
+
+to check status of repository or working directory
+git status
+
+to check git log
+git log 
+
+to check code by commit code
+git show <Commit-ID>
+
+To connect with github repo or remote repository
+git remote add origin <repourl>
+
+to add your work from working area to stage area
+git add .
+
+git push -u origin master(enter git username and password) 
+
+to pull the code from github repo
+git pull -u origin master 
+
+
+gitignore
+
+create a file .gitignore
+and enter which file you want to ignore
+like *css, *java
+
+and update this file in local repo
+
+
+to check commit by any idea
+
+git log --grep "ignore"
+
+
+Branch
+1) Each task has one separate Branch
+2) After done with code, merge other branches 
+   with master.
+3) This concept is useful for parallel development
+4) You can create any no of branches 
+5) Changes are personal to that particular Branch
+6) Default branch is "master"
+7) Files created in workspace will be visible in any
+of the branch workspace untill you comit once you commit, then
+that files belongs to that particular branch.
+8) when created new Branch data of exesting branch is copied to new 
+branch.
+
+To check all commit 
+git log --oneline
+
+to check branch
+git branch
+(* marked branch will be your current branch)
+
+to create a branch
+git branch <branch1>
+
+To switch branch
+git checkout <branch1>
+
+to delete branch
+git branch -d <branch1>
+
+to forcefully delete branch
+git branch -D <branch1>
+
+To merge branch(must merge from master branch)
+git merge <branch name>
+
+
+
+Git Stashing
+stash is a temperory storage.
+You can move your code in stash storage for
+temperory, so you can empty your workspace so 
+you can start new work, without completing perivous file.
+
+
+To stash an item
+git stash
+
+To See stashed items list
+git stash list
+
+To apply stashe items
+git stash apply stash@{number of file}
+
+To clear the stash file
+git stash clear
+
+
+Git reset 
+git reset is powerful command that is used to
+undo local changes to the state of a git repo.
+
+
+to reset staging area
+git rest <filename>
+git rest .
+
+To reset the changes from both staging area and working directory
+at a time.
+git reset --hard
+
+
+Git revert
+Revert command helps you undp an existing commit.
+=> It does not delete any data.
+It create a new commit with included file reverted to their
+previous state. 
+
+git revert <commit-id>
+
+
+To remove untracked files
+git clean -n  (dry run)
+git clean -f  (forcefully)
+untracked file=> those file which we are not using.
+
+
+To apply yag
+git tag -a <tagname>
+
+To see list of tags
+git tag
+
+To see particular commit content by using tag
+git show <tag name>
+
+To delete a tag
+git tag -d <tag name>
+
+Git Clone
+git clone <url of github repo>
+
+it create a local repo automatically in
+lunix machine with the same name as in github account.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,187 @@
+
+#Give name of this file Jenkinsfile
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
+
+###########################
+docker file
+
+FROM ngix:alpine
+COPY index.html /usr/share/nginx/html
+
+
+
+
+
+
+
+
+execute shell
+
+echo 'build a container'
+sudo apt update
+sudo apt install docker.io -y
+sudo docker build -t myimage .
+sudo docker run -it -d --name mycontainer -p 80:80 myimage
+
+
+*********************************************** How to install jenkins in Ubuntu********************
+ 
+ sudo apt update && sudo apt install openjdk-8-jdk
+ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+ 
+ sudo sh -c 'echo deb https://pkg.jenkins.io/debian binary/ > \
+    /etc/apt/sources.list.d/jenkins.list'
+	
+	sudo apt update
+	sudo apt install jenkins -y
+
+scp -i ./jenkins.pem agent.jar ubuntu@13.233.156.132:/home/ubuntu
+
+
+
+
+
+###$$
+FROM ubuntu
+WORKDIR /tmp
+RUN echo"welcome in jenks file" > /tmp/
+COPY vikas /tmp
+ADD vikas.tar /tmp
+
+
+FROM ubuntu
+ARG DEBAIN_FRONTEND=noninteractive
+RUN apt install apache2 -y
+EVN myname vivek
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+
+
+docker run -td --name web -p 80:80 ubuntu
+
+
+docker exec -it web /bin/bash
+
+apt-get install apache2 -y
+
+service apache2 start
+
+var/www/html
+
+
+
+###########################################
+how to install java in linux
+=> amazon-linux-extras install java-openjdk11
+=> yum install java-1.8.0-openjdk
+
+
+
+%%%%%%%%%%%%%%%%install jenkins on ubuntu%%%%%%%%%%%%%%%%%%%%%%
+    1 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+    2 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    3 sudo apt update
+    4 sudo apt install jenkins
+    5 sudo systemctl start jenkins
+    6 sudo systemctl status jenkins
+    7 sudo ufw allow 8080
+    8 sudo ufw status
+    9 sudo ufw allow OpenSSH
+    10 sudo ufw enable
+    11 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+9062f66075ac4733b4551e040e2adcbc
+
+
+
+########################### KUBERNATE ####################
+
+sudo su
+apt-get update
+
+apt-get install -y apt-transport-https
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+apt-get update
+apt-get install -y docker.io
+apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+
+//Now create the ami of this machine
+******************************************************************************
+kubeadm init --ignore-preflight-errors=all
+exit
+kubectl get node
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl get node
+kubectl get pods --all-namespaces
+
+Installing a CNI Network.
+sudo su -
+sysctl net.bridge.bridge-nf-call-iptables=1
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+exit
+kubectl get nodes
+******************************************************************************
+Install worker nodes, the first node
+sudo su -
+kubeadm join 172.31.30.67:6443 --token n68r31.fhftbzoof29bbmf6 --discovery-token-ca-cert-hash sha256:57fb1e8d0c980c70fb88afdfcf78e8113939f8133adc5e3bd5d8c1400f7a6086
+
+kubectl get nodes
+
+******************************************************************************
+Join the second node to the cluster, ssh into the slave node.
+
+sudo su -
+kubeadm join 172.31.30.67:6443 --token n68r31.fhftbzoof29bbmf6 --discovery-token-ca-cert-hash sha256:57fb1e8d0c980c70fb88afdfcf78e8113939f8133adc5e3bd5d8c1400f7a6086
+
+
+
+******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

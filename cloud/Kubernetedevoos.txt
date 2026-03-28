@@ -1,0 +1,345 @@
+1) Docker don't support scalability across the multiple host.
+
+2) If any container down or crash so who will monitor or  manage. If you need any point of time 20 container should be running. then who will manage this thing.
+
+2) we need loadbalancer to access all the container.
+But loadbalancer only work when all the container expose on the same port number.
+
+3) You can't expose same port of multiple container in same host.
+loadbalancer not directly connect to container it will reach to node.
+
+4) Docker create container and the containers networking scope is local. If map a container port with host machine only then you can access. and you can't expose multiple container same port on same host machine.
+
+5) how we can loadbalance.
+
+
+containers bring scalability challenges.
+We're starting to view the data center as a computer.
+
+
+6) docker deploy container any where in any host. 
+
+we need a tools who can deploy our container evenly all cross the host machines.
+In which node how much cpu how much ram, and let me deploy this container in this host. it should be decided by a tools
+
+
+the tools see the entire data center as one computer. do we have any such facility in docker.
+
+
+What is kubernetes?
+
+1) Container Orchestrator 
+3) Infrastructure absraction
+4) Desired state
+
+benefit of kubernetes
+
+1) speed of deployment
+2) ability to absorb change quickly
+3) ability to recover quickly
+4) Hide complexity in the cluster
+
+
+In kubernetes arcitechture has to primary component
+1) Master (kubernetes control plane)
+2) Node
+multiple master and multiple node making together a cluster.
+
+Master has to linux 64 bits
+nodes has to be linux 64 bits. But but windows 2019 onwords node can be windows also but windows version sould be 2019+ 64 bit
+
+MASTER HAS PRIMARY 4 COMPONENTS
+
+
+Node has 1 pod or could be multiple pod
+and pod has 1 container or could be multiple container.
+
+MASTER HAS PRIMARY 4 COMPONENTS
+
+1)
+Apiserver = 
+Api = api is basically one endpoint 
+Apiserver means = It is contian all the api supported by kubernetes at one place. that's why it is called Api server.
+what ever the feature in kubernetes if you want access it connect to apiserver.
+
+Kube-apiserver = Fronted-end to the control plane.
+                 expose the Api. if you want send any instruction to apiserver send it in json format. In other kubernetes don't support.
+
+2) Cluster store
+Persistent storage cluster state and config
+In Kubernetes cluster we do lots of things, we create we delete and many time pods destory automatically.
+We need something where we can store all the information about cluster.
+
+Persistent store
+Persistent knowledge or Persistent memory.
+If you lost it you lost everything.
+
+It called etcd 
+distributed, consistend, watchable..
+etcd store data in format of key-value pair
+mango db or something you can say.
+
+** You must have backup plan for it*** once you lost database you lost everything.
+
+
+3) Kube-controller-Manager
+kube = kubernetes
+controller - controling something
+manager - multiple controller
+
+controller of controllers
+* Node controller
+* Endpoints controller
+* Namespace controllr
+* .......
+contoller is something who check in certain interval of time like. 
+what is your cpu 
+what is your ram
+how many container do you have..
+
+it is in loop and informing to apiserver.
+
+watches for changes helps maintain desired state.
+
+4) Kube-scheduler
+kube-scheduler basically schedule the work.
+scheduler only assinging the work it is not doing by itself. but to whome it is assing to??? to nodes
+
+
+Node has 3 important component.
+
+1) Kubelet 
+
+Kubelet would be in each node.
+kube-scheduler is send the work and the kubelet is receiving the work.
+
+* The main kubernetes agent
+* Registers node with cluster
+* Watches apiserver
+* Instantaintes pods 
+* Reports back to master
+* Exposes endpoint on : 10255
+
+kubelet itself register with the node
+
+2) container engine
+
+Usually docker
+but could be rkt 
+
+kubelet initite the pod but container is  filled  inside the pod by the docker. 
+becuase docker is container management tools
+
+****Kubernetes Networking Requirements***************
+
+All Pods can communicate with each other on all nodes.
+All nodes can communicate will all pods.
+No Network address translation(NAT)
+
+****Declarative model and desired state******
+
+You wirte yaml file it is converted by kublet in json format.
+
+Pods - 
+vm --> container--> Pod 
+hypervisor manage vm  
+docker manage container
+pod manage the pod
+
+vm ( have a boot file system, ) vm is running until your os is running.
+
+Container has ( images) container is running is PID one is running 
+Pod has (container)  Pod is running until the all container running inside the pod.
+
+Inside the pod
+trnprt layer
+net
+link , IPC mount
+
+All containers in pod share the pod environment
+
+If One pod two container inside. it is called tight coupling.
+
+If one pod one container - Loose coupling . loose coupling is good.
+
+
+ First container inside the pod is called - Main container
+
+and second container is called -- sidecar
+ 
+Whatever assing to a pod. all container can access it.
+
+Pod lifecycle
+
+Phase:pendinig --> Phase:Running --> Phase:succeeded/failed
+
+What is pod
+
+One or more containers. 
+It's your application or service.
+The most basic unit of work.
+Unit of scheduling
+Pod is ephemeral - No pod is ever "redeployed"
+or you can never stop any pod.
+atomicity - they're there or Not
+
+Pods-contnued.
+what is the job of kubernetes
+
+kubernetes job is keeping your pods running More specifically keeping the desired state.
+state - is the pod up and running
+Health - is the application in the pod running liveness probes.
+
+******************************************************
+******************************************************
+
+Installation of kubernetes._
+
+* There are more the 40 methods to setup kubernetes cluster. 
+
+
+the simplest method is
+minikube
+GKE , AKs, EKS 
+manual installation.
+
+**** Manual way using kubeadm ****
+
+Masker (controlplane)
+-------------------------------
+API server  --> POD  --> Container --> Docker Image --> Google registry
+ETCD	      --> POD  --> Container  --> Docker Image --> Google registry               
+Controller Manager  --> POD  --> Container --> Docker Image --> Google registry
+Scheduler      --> POD     --> Container --> Docker Image --> Google registry
+
+******************
+kubelet ---  Because kubelet create a pod
+Docker  ---- Inside the pod there docker
+kube proxy ---- assing Ip address
+
+( these tools should be also there in master)
+
+kubectl --- should be all in component beacuse it is talking to apisever.
+
+There are lots of things to be done like. who will download all the thing, who will autherise or authenticate. who will install all the thing. 
+
+then there is a tool
+kubeadm init
+
+*********************
+
+Worker (Node)
+--------------------------
+Kubelet 
+Docker
+Kube porxy
+kubeadm
+
+
+workstation - (your laptop)  
+-----------------------------------------------
+Kubelet
+
+____________________________________________________________________________________________________________________--
+ How kubectl work iin workstaion
+
+kubctl -->  look --> $USER-HOME/.kube/config(yaml)
+this file is generated by init process. and it has been store here while setuping the workstation.
+
+How kubectl get AUTHORZIED AND AUTHENTICATION TO API server.
+
+- Authentication == certificate
+- Authorization  == RBAC
+
+What is the content for config file.?
+---------------------------------------------
+
+Clustor(s):
+	clustor1: http:/ip/of api server
+	clustor2: http:/ip/of api server
+	clustor3  http:/ip/of api server
+
+user(s)
+	user1: key+cert
+	user2: key+cert
+
+context(s)
+	context1: = clustor1+user1
+	context2: = clustor2+user2
+
+this file you are using for working with multiple cluster
+
+current-context == context2 ( if you want default cluster)
+
+cmd ==> more ~/.kube/config
+   kubectl config view ==> to check yaml format
+
+-----------------------------------------------------
+Getting comfortable with kubectl
+
+----------------------------------------------------
+master
+cmd   kubectl 
+ 
+
+
+Namespace - vertical logical group of cluster
+system name space ==> system related Pod
+Default ==> If you want to create in Default namespace
+Public ==> If you want to one pod for access everyone
+Node ==> use for system admin for do maintaince work
+
+______________________________________________________
+
+How to work with API??
+	CURD -- GET - PUT - POST - DELETE
+	
+	CREAT -->
+		CMD
+			CREATE
+		YAML
+			create yaml file
+	UPDATE-->
+		CMD
+			EDIT
+		YAML
+			create yaml file
+	READ
+		CMD
+			GET
+		YAML
+			create yaml file
+	DELETE
+		CMD
+			DELETE
+		YAML
+			create yaml file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

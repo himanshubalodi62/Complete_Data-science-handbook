@@ -1,0 +1,87 @@
+Storage is used to store objects which are random in nature,
+For example videos,music files, etc
+
+
+
+Database are used to store data or records,
+which are more related to each other,
+which may change with time and can be uddated.
+
+
+
+Blog storage 
+
+virtaul machine images
+disk storage
+
+file storage 
+smb protocal 
+
+
+Block blob storage
+File storage
+premium storage 
+Low latency
+Increased performance 
+IOPS bursting
+
+
+Performance type premium
+
+accounts with gthe selevted kind replication and performance
+type only support page blobs, block blobs, append blobs,
+file shares, tables and queues will not be avilable.
+and blob storage account type will be not avilable.
+you have block blog storage account type.
+only can replication with LRS(locally-redundand storage).
+
+
+Data protechtion
+
+1) turn on point-in-time restore for container.
+Use point-in-time restore to restore one or more containers to an earlier
+state. If point-in-time restore is enabled,then
+versioning, change feed and blob soft delete must also be enabled.
+
+2) turn on soft delete for blobs
+soft delte enable you to recover blobs that were previously marked fro deletion,
+including blobs that were overwritten.
+3) turn soft delete for container.
+soft delete enables you to recover containers that were previously marked for deletion.
+
+4) tun on soft delete for file share
+Soft delete enables you to recover file shares that were 
+previously marked for deletion.
+
+
+___Tracking___
+
+Turn on versioning for blob
+use versioniing to automatically maintain previous versions of your blobs for 
+recovery and restoration.
+
+turn on blob change feed
+keep track of create modification adn delte changes to blobs in your account.
+
+
+security
+
+secure transfer --> https, http
+enable or disabled
+
+allow blob public acess 
+disable or enable
+
+
+Blob change feed
+ store all log related to blob
+
+
+
+
+
+
+
+
+
+

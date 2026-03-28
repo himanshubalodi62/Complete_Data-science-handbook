@@ -1,0 +1,479 @@
+Four Pillar Of Devops
+
+* People/Process/Product(3P): Culture
+* Lean Product (Get Things as soon as possible)
+* Architecture
+* Technology
+
+{Plan-->code-->Build-->Test-->Release-->Deploy-->Operate-->Monitor--Plan}
+
+Lean Product
+
+* Speed to market
+* Defined by its business capabilities
+* Can be repeatable (Easily can repeate)
+* Agility (to fast accept the changes)
+* Customer satisfaction
+
+Devops capabilities/Practices
+
+* Continuous Planning (How you plan your product and work)
+* Continuous Integration 
+* Continuous Delivery
+* Continuous Quality
+* Continuous Operations 
+* Continuous Security
+* Continuous Collaboration
+* Continuous Improvement
+
+Continuous Planning
+
+* Clear Objectives 
+* Inspiring Goal
+* Share Goals
+* Measure results
+* Failure Happens
+* Value Smplicity
+* The manifesto for agile software development
+* Design thinking
+* Itrative and Incremental development
+* Lean management
+* Estimation accuracy
+
+Artifacts (any kind of file, which will directly install at in plantform)
+
+Continuous Integration GOals
+
+* collaboration
+* Parallel development
+* Minimize integration debt
+* Quality gate (there must be some minimum quality check for the next step call quality gate)
+* Automate 
+
+Continuous delivery (need manual intreption)
+Continuous deployment (all thing will be automated)
+Continuous delivery Goals
+* Build, test and release with greater speed and frequency
+* Reduce cost, time and risk of delivering changes
+
+QA to Continuous Quality
+
+	QA			Continuous Quality
+		
+Why	Breaking the system	Improving the system
+What	Checking functionality	System Understanding
+Who 	Tester responsibility	Entire team owns quality
+When 	Tester at the end 	testing throughout 
+How	finding issues		Preventing issues
+Outcome	Minimum Quality		Increasing quality
+
+
+Continuous monitoring
+
+Azure monitor
+* Monitor hybrid infrastructure
+* create alerts
+* create actions
+* Connect to IISM tools (IT system monitoring)
+* create dashboards and workload
+
+Application insight
+
+* monitor web apps
+* detect performance anomalies
+* diagnose failures
+* Analyze user experience
+
+ITSM Connector
+
+* serviceNow
+* Provance
+* Cherwell
+* System Center Service Manager
+
+Git 
+
+* Distributed Version Control System
+* Supports branching
+* Code history and collaboration
+* code review
+* Git is bad for binay file(.exe, Image, movie kind of things)
+
+Git LFS(large file system)
+
+* Manage Large binary files
+* Must be installed on each client
+* GitHub desktop can be configured with Git LFS.
+
+Git Submodules
+
+* Share code in different repostiory.
+* Enhances collaboration on common code. 
+* Reduce copy paste of code.
+
+
+GitHub
+
+* A SAAS platform with using Git
+* Provides overall flow for ollaboration
+* Can be accessed using web, command line tools or IDE
+
+Azure Repos
+
+* Part of azure devops service
+* Proveds git as well as TFVS(team foundation version control) as version control system
+* Accessed using website, command line or other IDE.
+
+Cloning and forking
+
+* clone - copy on the local machine
+* Forking - coply on the github account
+
+
+Branch strategies
+
+* Use feature branch
+* Merge changes using pull request
+* Maintain up to date branches
+
+Protect code
+
+* Branch policy
+* Dependency graph
+* Dependency alerts
+* Use .gitignore file
+
+Merge restrictions
+
+* Define branch policies
+* Define pull request guidelines
+* Configure approvals
+
+Azure Pipelines
+
+* Supports Both GUI and YAML for Pipelines
+* Supports end to end build, test and deploy
+* Marketplace for third party integration
+
+Configure single sign on
+
+* Azure Active directory
+* Integrate with AAD for single sign on 
+* GiHub and azure devops supports integration with AAD
+
+Continuous Deployment
+
+* Github actions
+* Azure Pipelines
+* Azure key vaults for secrets
+* GitHub Secrets
+
+ChatOps
+
+* GitHub Apps
+	* GitHub webhooks
+	* polling
+Microsoft teams
+
+
+
+Build pipeline
+
+* Code analysis
+* Dependency scanning
+* Testing
+* Compile
+* Configuration changes
+
+Quality Gates
+
+It check the your code and approve for next proccess
+base on the code analysis we define Quality gates.
+
+Testing  strategy
+
+business facig (Expioratiory test scenarios usability testing UAT alpha beta) most of manual
+Supporting the team (Functional test story test prototype simulations)automated and manual
+technology facing (Unit test, components test)these test could be automate
+Critique Product (Performance and load security test)
+
+Implement a build strategy
+
+Build infrastructure 
+* Available tools (Azure pipeline, Github actions, Jenkins)
+* Cost 
+* Hosted agent
+* Private Agent
+
+CI Triggers
+
+Continuous Interegration
+
+Based on branch, schedule, path, Tags
+it started build
+after build you will gat artifacts
+
+* Testing
+* Package dependencies
+* Configuration changes
+* compile
+
+Configuration in build
+
+* DB connection strings
+* Application Variables
+* System variables
+* Secrets
+* Infrastructure configuration
+
+Maintain build strategy
+
+Pipeline health
+	* Recognize flaky tests
+	* Monitor Pipeline execution
+	* Analyze failure rate
+
+Pipeline Improvement
+	* Pipeline Templates
+	* Common variables and task groups
+	* Build time
+	* Pipeline as code 
+
+Build Agent capactiy
+
+* Compute and memory
+* Runt time and other dependencies
+* Parallel jobs
+* Agents Access
+
+Design a process for standardizng 
+
+* using build agents in cloud
+* Infra as code
+* Containerized build environment
+* On demand build agents
+
+Resuable components
+
+* Pipeline as YAML
+* Pipeline templates
+* Variable groups
+* Task groups
+* Marketplace extensions
+* Custom extensions
+
+Package Management
+(Store your package somewhere to access everyone for later use)
+
+Node.js modules
+Python scripts
+Universal packages
+java packages 
+Docker images
+
+we have two package management system
+public and private
+public are - Nuget.org, npmjs.org. PyPi.org, docker Hub
+
+Privat (You can control)
+My feed , azure container registry
+Azure Artifacts
+Self-hosted solution (J-frog on premise solution)
+
+Versioning 
+
+* Semver = MAJOR.Minor.Patch
+major - breaking changes
+minor - compatible changes
+Mirco/patch - compatible bug fixes
+modifier - dev, alpha, beta, rc1
+
+* Calver - YYY.Minor.Micro
+
+Desin an application infrastructure management strategy
+
+Separation of concerns
+
+* Configuration custodian(who should be owner of this configuration)
+
+* Configuration consumer(who is actually configuration, developing by given the information by custodian Like api key etc)
+
+* Configuration store (are location which help you store your development)
+
+* secret store(more security, they handle key and password certificate)
+
+Azure key vault 
+* secret management
+* Key management
+* Certificate Management
+* Hardware security module (HSM)
+
+Managing Identity
+
+* Azure AD Single Sign On
+* Service Principals
+* Managed Identity
+
+to create a service principle
+az ad sp create-for-rbac -n "keyvault"
+
+
+Continuous Delivery
+
+CI system updated code --> dev-->QA--> Preprod--Prod = Need manual approve
+
+Continuous Deployment
+
+CI system update code ---> dev---> QA ---> Preprod--> prod = Auto approve
+
+Tools 
+
+* Azure Pipelines 
+* GitHub Actions 
+* Jenkins 
+* Octopus Deploy
+
+Continuous Infrastructure
+
+* Infrastructure Deployment automation
+* Infrastructure Versioning
+* Immutable Infrastructure
+* SRE practices
+
+Combine release
+
+* Couple Infra and app deployment
+* Manage changes in infra
+* reduce Dependencies
+* Better Collaboration
+
+Release design
+
+* Dev --> QA --> Prod 
+* Testing and validationo
+* Dependent components
+
+Release gates  and approvals
+
+* Automated release gates
+* Manual approvals
+
+Release Strategy
+
+* Blue/Green
+* Canary 
+* Ring
+
+Implementing release strategy
+
+* Deployment slots
+* Load Balancer
+* Azure Traffic Manager
+* Feature toggle
+
+Desired state configurations
+
+you create a desired state file, base on this configuration file you decide you infrastructure 
+
+*  Powershell DSC
+* CHef
+* Puppet
+
+Minimize Downtime
+
+* Swap slot
+* Loadbalancer
+* Rolling updates
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Log Framework
+
+* Continuous Monitoring
+* Application Monnitoring
+* Infrastructure Monitoring
+* Log storage/Streaming (application continuously send their log, log analytics,
+        azure storage account,eventHub, powerBI)
+
+Azure Platform Logs
+
+* Activity Logs
+* Resource Logs
+* Application Insight
+* App center 
+
+Design and implement telemetry
+
+If we want to track any application for that you need to track
+
+Preformance metrics
+* Requests per minute
+* Response times
+* Idle connections
+* Service availability
+* CPU Utilization
+* Error rate 
+* Garbage collector invocation (clean the memory and application level garbage)
+
+KPI (key performance Indentify)
+
+* System health
+* Relative progress in business objectives
+* End user satisfaction
+* IT efficiency
+
+
+Define And Measure
+* CPU
+* Memory 
+* Disk
+* Network 
+
+Alerts
+* Emails
+* SMS
+* Webhooks (If any alert you want to tell any third party application)
+* Teams/Slack (chat options)
+* ITSM
+
+Integrated Monitoring
+
+* Azure monitor
+* Azure Platform Logs
+* Security Center
+
+
+Feedback loop
+
+* Automated Runbooks Actions
+* Event Grid
+* ITSM Integration

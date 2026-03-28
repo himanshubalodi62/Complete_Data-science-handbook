@@ -1,0 +1,45 @@
+to check all host in ansible
+ansible all --list-hosts
+
+
+to check group wise all host
+ansible <groupname> --list-hosts
+
+to check in specific number
+ansible <groupname>[0] --list-hosts
+
+to check in specific range
+ansible <groupname>[0:2] --list-hosts
+
+if you want to check from last
+ansible <groupname>[-1] --list-hosts
+
+ssh-keygen
+
+visudo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

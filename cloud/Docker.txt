@@ -1,0 +1,367 @@
+what is a container?
+
+- Executable unit of software
+ * Encapsulates everything necessary to run
+ * Can be Run anywhere
+- OS- Level virtualization 
+ * Isolates processes
+ * Controls resources allocated to those processes
+- small, fast and protable
+ * Doesn't include a guest os in every instance
+ * leverages host OS
+
+Container introduce in 2013(docker as  modern container)
+
+Benefits of containers
+ 1- lightweight
+	* don't include a guest OS
+	* Spin you quickly and scale horizontally
+2- Portable and platform Independent
+3- Support modern Development and architecture
+4- Improve utilization 
+	* Scale each component individually
+
+containers vs virtual machines
+
+in virtual machine
+hypervisor.
+each virtual machine has there on OS
+
+In Containers
+we install a OS and the a container engine
+that me create multiple container.
+
+Use Cases for Containers
+
+1- Microservices
+	* Loosely coupled and independently deployable services
+2- DevOps 
+	* Build, ship, and run software
+3- Hybrid, Multi cloud
+	* Run Consistently across environments
+4- Application Modernizing and migration ini cloud
+
+
+****DOCKER****
+
+1- Software platform for buildiing and runninig containers
+	* Containerization existed before Docker
+	* launch of Docker in 2013 popularized containerization
+	* Provides a straightforward way to build and run containers
+
+2- "Docker image" and Docker container are used interchangeably for image
+    and container
+
+  
+3- Open-source community 
+
+
+Command Docker 
+
+build	- Creates container images( require a dockerfile)
+tag	- Name Image (don't overwrite existing images)
+images	- Lists all images, their repositories and tags
+run	- Runs a container(suited for testing an image
+pull and puch -(stores images in and retrieves images form a remote location)
+
+Dockerfile inistructions
+
+1-FROM		- Define base image
+2-RUN		- Excute arbitrary commands
+3-ENV 		- set environment variables
+4-ADD and COPY  - Copy file and directories
+5-CMD		- Define default command for container execution
+
+
+
+FROM ubuntu:18.04
+COPY./app
+RUN make /app
+CMD python/app/app.py
+
+
+Container Reginstry
+
+Container image can be store in local machine
+
+*container registry store and distribution of 
+name container images
+
+registry could be public or private
+must use private registry that is more secure
+hosted or self-hosted
+
+push image to a registry
+pull image from a registry
+
+Image naming
+hostname/repository:tag
+
+Repository is group of same images conainter
+
+____Runnning containers____
+
+FROM node:9.4.0-alpine
+COPY app.js .
+COPY package.jason .
+RUN npm install &&\
+	apk update &&\
+	apk upgrade
+CMD node app.js
+
+
+docker build -t my-app:v1	- To build a docker image
+-t indicate the tag name(what name you want) my:app is repository name
+
+FROM node:9,4,0-alpine
+COPY app.js
+COPY package.json
+RUN npm install && apk update & apk upgrade
+SMD node app.js
+
+Docker images	- to check for available image
+
+docker tag  my-app:v1 secoond-app:v1	-to create one more image from existing image
+
+docker run my-app:v1	-to create container from image
+docker push my-app:v1	-to push image to a registory
+
+
+Bamboo
+Jenkins
+
+To see all images present in your local
+==> docker images
+
+To find out images in docker hub ==> docker serach jenkins
+
+To download image from dockerhub to local 
+machine ==> docker pull centos
+
+To give name to container
+==> docker run -it --name vivekblaodi centos bin/bash
+
+To check services is start or not
+==> service docker status
+
+
+To start container
+==> docker start vivekbalodi (container name)
+
+To go inside container
+==> docker attach vivekbalodi
+
+To see all container
+==> docker as -a
+
+To See only running Container
+==> docker ps
+
+To stop container
+==> docker stop vivekbalodi
+
+To Delete container
+==> docker rm vivekbalodi
+
+
+to pull a image form docker hu
+docker pull (imagename)
+
+
+To Image to a container by name
+docker run -it --name vivekbalodi imagename /bin/bash
+
+c /root  ==> c means change
+A /root/.bash-history ==> a means append or addition
+c /tmp
+A /temp/myfile
+
+How to create image from container
+
+docker commit newcontainer updateimage(imagename) 
+
+To check what changes you made. 
+docker diff containername
+
+
+
+Docker filename
+
+FROM => for base image this command must be on top of the dockerfile
+
+_____DockerFile____
+
+From ubuntu
+WORKDIR /tmp
+RUN echo "---------" > /tmp/testfile
+ENV myname ------
+COPY testfile1 /tmp
+ADD test target /tmp
+
+
+***Volume***
+1) Volume is simply a directory inside our containers
+2) Firstly, we have to declare this directory
+as volume and than share volume.
+3) Volume will be created in one container
+4) You can declare a directory as volume only while creating container.
+5) You can't create volume from existing container.
+6) You can share one volume across any number of containers.
+7) Volume will not be included when you update and image.
+
+**You can mapped volue in two ways
+ container <--> container
+ Host <--> container
+
+Benefits of volume
+1) Decoupling container from storage.
+2) share volume among different containers.
+3) attach volume to containers.
+4) On deleting container volume does not delete.
+  
+
+
+ 
+
+docker run -it --name container2 --privileged=true --volume-from container1 ubuntu /bin/bash
+
+
+Try to create volume by using command
+
+docker run -it --name containername -v /volume2 ubuntu /bin/bash
+
+do ls
+
+how to share volume while creating container
+
+docker run -it --name containername --privileged=true --volume-from <containerwhereyourvolume> ubuntu/bin/bash
+
+to check linux cernal version
+uame -r
+
+docker run -it --name container23 --privileged=true --volumes-from container1 ubuntu /bin/bash
+
+
+
+
+
+/home/ec2-user
+
+docker run -it --name hostcont -v /home/ec2-user:/rajput --privileged=true ubuntu /bin/bash
+
+to check all volume
+docker volume ls
+
+to create docker volume
+docker volume create <volumename>
+
+to delete volume
+docker volume rm <volumename>
+
+to delete unused volume
+docker volume prune
+
+to check details of volume
+docker volume inspect <volumename>
+
+to check container details
+docker container inspect <containername>
+
+
+______Docker Port expose_______
+
+If you want to access your container from internet.
+It is called port expose.
+
+
+docker run -td --name techserver -P 80:80 ubuntu 
+
+which port we expose with container
+docker port <containername> 
+
+to go inside the container
+docker exec -it <containername> /bin/bash
+
+
+docker run -td --name myjenkins -p 8080:8080 jenkins
+
+DevOps IAC
+
+
+How to give tag to docker image
+
+docker tag image1 <docekrid/newimage>
+
+To push docker image in docker hub
+docker push <dockerid/newimage>
+
+
+To pull dockr image from hub
+docker pull <dockerid/newimage>
+
+To stop all running container once 
+Docker stop $(docker ps -a -q)
+
+Delete all stopped container
+dokcer rm $(docker ps -a -q)
+
+delete all image 
+docker rmi -f $(docker image -q) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

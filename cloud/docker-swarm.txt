@@ -1,0 +1,174 @@
+What is container Orachestration?
+
+Container Orchestration is the process of deploying and maintaining large number of container and services for the application to run as intended.
+
+It is performed to control and automate task like
+* Deployment of containers
+* Scaling 
+* Resource allocation
+* Load Balancing 
+* Health Monitoring etc.
+
+What is a docker swarm
+Docker swarm is a container orchestration tool part of the dockr engine. With it, developers and IT administrators can deploy and manage a cluster of Docker nodes as a single virtual system.
+
+
+
+
+
+Docker Swarm Components
+
+1) Service = Services defines the tasks that needs 	to be executed on the manager and worker 	nodes.
+
+2) Task = Task refer to docker containers that 	execute the commands defined in the 	service.
+
+3) Manager Node = Accepting commands and creating 	 	service objects.
+	allocating IP addresses to tasks
+	Assigning tasks to nodes
+	Instructing a worker to run a task.
+
+4) Worker Node = Worker nodes are responsible for 	checking assigned tasks and executing 	containers.
+
+Building docker swarm 
+
+how to initialize
+docker swarm init --advertise-addr<ipAddPUbli>
+
+second node 
+How to join docker swarm
+
+docker swarm join --token <token ID>
+
+tell us about docker
+Docker info
+
+to check all docker node
+docker node ls
+
+How to leave docker swarm (cmd will execute form node)
+docker swarm leave
+docker searm leave --force
+
+How to remove down node ( cmd will execute in manager)
+docker node rm <nodeId>
+
+
+Docker swarm service
+
+To create a service
+docker service create --replicas <number-of-replicas> --publish <port-mapping> <image-name>
+
+docker service create --name new-service --replicas 3 -p 80:80 nginx:latest
+
+If you want ot find join token
+docker swarm join-token worker (cmd will be execute in manager nodez)
+
+To check running serivce in swarm
+docker service ls
+
+To check all details about the docker service
+
+Docker service inspect --pretty onld-service
+
+To check In which node service is running
+docker service ps <servicename>
+
+
+Deployments in the Swarm
+
+Docker stack function makes use of YAML files to deploy multiple services at once.
+docker stack deploy -c <yaml-filename> .yml <stack-name>
+
+
+ngin.yaml
+version : '3.3'
+service:
+  sample1:
+     image: 'nginx:latest'
+     ports:
+	- "8080:8080"
+  sample2:
+     image: 'ubuntu'
+
+
+if I want to increase my replicas
+
+docker service sacle <sevicename>=3
+
+
+Rolling updates are used to update an images in the service while it is being run
+
+docker service --name redis create --replicas 3 --name redis --update-delay 10s redis:3.0.6
+
+docker service update --image redis:3.0.7 redis
+
+
+Drain Nodes
+
+docker node update --availability drain <NodeID>
+(drain status prevents the nodes for receiving new tasks)
+
+Now change to active
+docker node update --availability active <nodeID>
+
+Connecting to a network
+
+For creating a overlay network
+Docker network create --driver overlay <Networkname>
+
+
+to start a service with an overlay network (in a existing service)
+docker service create --replicas 3 --network <networkname> --name test nginx:latest
+
+
+
+Giving storage access
+ --mount flag can used to link a service to a storage
+
+volume = docker service create --mount src=<volume-name>, dst=<container-path> --name myservice <image>
+
+Bind Mount = docker service create --mount type=bind, src=<host-path>, dst=<container-path> -name myservice <image>
+
+if you want mount flag in existing service
+docker service update --mount-add type=volume,source=<volumename>, target=/apps <servicename>
+
+Controlling service placement
+
+Replicated or global services
+replicated = the Tasks are replicated to a specified number using the --relicas flag and then each task is assigned to a node.
+
+
+docker service create --name myservice1 --replicas 3 nginx
+
+docker service create --name myservice1 --replicas 3 nginx
+
+
+Global
+this type of service runs one task on every node.
+Eg - Monitoring Agents, ANtivirus Scanners.
+
+docker service create --name <servicename> --mode global ngix
+
+
+Reserving Memory 
+--reserve-memory or --reserve-cpu flags can used to reserve a certain amount of memory or number of CPUs for service.
+
+Placement Constraints
+
+--constraint flag can be used to allocated service task to only nodes with certain lavel value.
+docker servic create --name my-nginx --replicas 5 --constraint node.labels.region==east nginx:lates
+
+docker service create --replicas 9 --name <servicename> --placement-pref 'spread=node.lables.datacenter' nginx:latest
+
+
+
+giving label to existing node
+
+docker node update --label-add ID=1.1 <nodeID>
+
+  
+to give a label to existing service
+docker service create --name <servicename> --replicas 6 --constraint node.labels.ID=1.1 nginx:latest
+
+
+

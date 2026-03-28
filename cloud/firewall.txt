@@ -1,0 +1,34 @@
+Manage, cloud -based network security service
+
+layer 7, 4-3
+
+Public facing
+repsonsible outbound of vnet network
+fully statefull firewall as a service
+
+Built-in High avialablitiy and unrestricted cloud
+scalility, supports highly available firewall clusters
+
+inbound Dnat and outbound snat support
+Threat intelligence-based filtering can be enabled for yoru firewall
+to alert and deny traffic from/to known malicious IP addresses and domains
+
+* You can route all internet-bound traffic to a designated next hop
+
+RULES ARE NEEDED
+
+Nat Rules => Inbound internet network traffic to your firewall
+public IP address is translated and filtered to the private Ip
+address on your virtual networks.
+(AzureFirewallSubnet /26)
+
+Network Rules:-
+* allow or deny rules based on IP address and or service tags 
+* Applied before application rules
+
+Application Rules:
+Allow or Deny rules base on Domain Name System.
+
+Lesser the number higher the priority
+
+ 

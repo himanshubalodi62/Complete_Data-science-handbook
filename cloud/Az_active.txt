@@ -1,0 +1,14 @@
+Azure activr directory
+
+clous base identity provider
+controls access to azure resources.
+provides authentication and authorization 
+services to azure portal, 0365 and other Saas services.
+
+Manage devices using azure ad
+ability to invite guest users from other azure AD (B2B) or Public IDP (B2C). 
+B2B=(if any one have azure Ad in other organization you can invite him)
+B2C = (if someone have public identity, they can also manage and control if you will give them any rights).
+
+Support OAuth, OpenId , SAML and WS-Federation authentication protocols
+

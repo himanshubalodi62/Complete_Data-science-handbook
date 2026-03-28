@@ -1,0 +1,12 @@
+https://github.com/svilmune/tf-012-create-three-instances-demo
+
+https://github.com/oracle-terraform-modules/terraform-oci-vcn/blob/master/examples/variables.tf
+
+
+
+https://www.thatfinnishguy.blog/2020/05/06/create-multiple-compartments-in-oracle-cloud-infrastructure-with-terraform-module/
+
+
+
+
+https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/tf-vcn/01-summary.htm

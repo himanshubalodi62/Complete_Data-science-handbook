@@ -1,0 +1,45 @@
+create a directory
+md helloworldapp
+
+create a dotnet solution
+dotnet new sln
+
+check directorydir
+
+dir
+
+create dotnet web project
+dotnet new mvc -n Helloworldapp.web
+
+combined web file and solution
+dotnet sln hellowordapp.web add helloworldapp.web\helloworldapp.web.csproj
+
+open visual studio
+code.
+
+
+go inside the webproject
+and run dontnet file
+dotnet run
+
+
+come in root folder of your solution
+and initialize git
+git init
+
+
+add git ignore file
+
+add your code in staging area
+git add .
+
+commit your code
+git commit -m "first code"
+
+
+
+
+
+git remote add origin https://vijaybalodi@dev.azure.com/vijaybalodi/gopaltesting/_git/gopaltesting
+
+git push -u origin --all

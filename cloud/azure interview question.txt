@@ -1,0 +1,43 @@
+https://docs.microsoft.com/en-us/azure/devops-project/azure-devops-project-aks?toc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Faks%2Ftoc.json&bc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json
+
+
+
+1-Fault domain and update domain
+2-Internal error occur(NLA)
+3- Knowledge of Migration
+4-Disk Encryption
+5-Site to Site VPN
+6-SQL
+7-Blue and black screen (Brute force attack) 4625- EVENT VIEWR
+8-Azure AD and AD connect
+9-How to upgrade 2016 OS to 2019 wihtout loose data
+10-Disk types
+11-BLOb purpose
+12-Azure Extension
+13-Boot diagnostic
+14-Monitoring tool (Azure performance diag and metrics)
+15-log anlaytics ( basic language)
+16-Azure backup and mars backup diffrence.
+17-WVD technology
+18- Service connection and service principle
+19-What is load balancer and application gateway, traffic manager
+20-Azure front door
+21-Application insights
+22-Azure fabric
+23-How to set alert in linux VM (80% alert)
+24-Storage access key and shared key
+25-What is soft delete?
+26- How to add manual agent in devops
+
+1-Responsibility (Implementation, troubleshooting, and monitoring the azure services)
+2- Which option you will choose the Availability set and Availability zone and why?
+3-Please share the live environment troubleshooting( VM not able to access error(an internal error occurred)
+4- not able to stop running machine (Unknown error) wait for 30minutes. if you don't want to wait you can redeploy.
+Configure in availability set.
+5-AD functionality and troubleshooting and monitor
+6-Azure AD integration (Via azure AD connect)
+7-Migration types (on-prem to azure, VMware to azure, and hyper V azure)
+8-ONprem to azure migration steps
+9-Storage account( unstructured and structure)
+10-Pricing difference b/w availability zone and avialability set
+11-Azure SQL--Deployment

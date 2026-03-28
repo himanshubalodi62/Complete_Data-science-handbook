@@ -1,0 +1,135 @@
+Assess
+Migrate
+Optimize
+secure and manage
+
+
+Discover and Assess 
+-----------------------
+You need to know what you are actually you are migrating. 
+We need to discover inventory ( dependencies)
+
+Azure migrate: server migration
+Assess as per cloud, cost, storage, compute, disk, performance. 
+MAP - Microsoft assessment tool
+Vm readiness tool.
+
+Migrate: --
+-----------------------------
+6R strategy - Migration
+Lift and shift migration 
+azure migrate : server migration
+ASR : give you 30 days free migration
+ISV 
+RM, cloudamzie etc.
+
+Optimize
+---------------
+cost optimization
+azure adviser
+azure cost managemet
+
+azure offers 
+AHB & RI
+
+continous monitoring
+Re-invest 
+__________________________________
+Secure and manage 
+--------------------------
+Azure security center
+
+azure backup 
+Azure monitoring
+Log analytics
+App insights
+Azure automation 
+___________________________________________
+ 6 R strategy- Migration
+
+1) Re-host
+2) Re- Factor(Re-package)
+3) Re-Architech (for application)
+4) Re-Build (building form scratch)
+5) Retain
+6) Retaire
+
+___________________________________________
+Migrate -
+1) Create Migrate project
+2) Download migrate apppliance in OVA templete (light weight azure migrate appliance) and import in v-center env and create vm
+3) setup pre-req
+	i) register with azure migrate
+	ii) specifiy vcenter server details
+	iii) sand and discovery 
+4) Assess ( Discovered data start showing on portal)
+5) Create Assessment
+	i) Performance based Vmsize - CPU & Memory disk - IOPS and thoughput
+	ii) As per on-prem Vmsize and storage.
+
+6) Assessment report
+	Azure readness
+	- Ready for azure
+	- Ready with condition
+	- Not ready
+	- readiness unknown
+	- Cost details - monthly 
+___________________________________________
+https://www.pachehra.com/2020/04/azure-interview-questions-part-8.html
+
+
+https://www.pachehra.com/2020/04/azure-interview-questions-part-9.html
+
+Question 1-> My version of the Mobility services agent or configuration server is old, and my upgrade failed. What do I do?
+Answer - Update is seen from portal and should be updated from portal. And reboot is recommended.
+
+Question 2-> What does the configuration server do?
+Answer-> Confige server co-ordinate with on-prem sever and azure. And manage data replication.
+
+Question 3-> What does process server do?
+Answer -> Proccess server act like as replication gateway. recieved all data from vm throw mobility services. Send the data to the azure storage. perform automatic discovery of vm in on-prem data center.
+
+Question 4->  Tell few pre-requisite of te configuration server?
+Answer - Ip should be static
+     - free disk 600Gb.
+if you need failed back the 600gb 2 gb
+        - Internet access allowed
+	- If internet not allowed so number of url you need to whitelist.
+	- 16Gb ram 8 cpu
+	- 443 to 9443 is required port should allowed.
+	- Operating system should be 2012-R2
+
+Question 5-> Can a confgi server replicate to more than one region?
+Answer -> No, for that you need each server in every region.
+
+Question 6-> Where can I download the Passphrase for config server?
+Answer-> we need passpharese we install mobility agent configure we register. you can generate it. Go to cmd promte.
+
+Question - Where Can I download vault registration keys?
+Answer ->That can be download from azure portal. Go to site-recovery - manage-config server-- sever - download recovery vault key.
+
+
+Question 8-> What access to VMware does site recovery needs?
+Answer-> to replicate vm, must install site mobility agent install and registerd.
+
+
+Question 9-> Is Replication data sent to the site recovery?
+Answer - No  it sent (metadata)
+
+Question 10-> Where can I find the Mobilitiy service installers.?
+Answer -> ASR -> Home-> systems -> push install -> repository folder. in configuration server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

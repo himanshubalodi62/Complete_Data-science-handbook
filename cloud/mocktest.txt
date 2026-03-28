@@ -1,0 +1,29 @@
+to create pod 
+kubectl run messaging --image=redis:alpine -l tier=msg
+
+To check labels 
+kubectl get pods --show-labels
+
+To expose any port
+kubectl expose pod messaging --name messaging-service --port 6379 --target-port 6379
+
+To describe svc 
+Kubectl describe svc <messaging-service>
+
+To create deployment
+kubectl create deployment hr-web-app --image=kodekloud/webapp-color
+
+to scale up deployment
+kubectl scale deployment hr-web-app --replicas=2
+
+To dry run cmd for static pod
+kubectl run static-busybox --image=busybox --command sleep 1000 --dry-run=client -o yaml > static-busybox.yaml
+
+by default static pod directory
+ls -i /etc/kubernetes/manifests/
+
+cd /var/lib/kubelet/
+
+grep -i staticPod config.yaml
+
+mv static-busybox.yaml /etc/kubernetes/manifests/

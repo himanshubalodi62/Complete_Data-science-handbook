@@ -1,0 +1,129 @@
+What is kubernetes
+
+containers are a good way to bundle and run your 
+applications. In a production environment, you need to manage the containers that runthe application and ensure that there is no downtime and that's where kubernetes comes into the picture.
+
+
+kubernets is portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation, It has a large rapidly growing ecosystem. kebrnetes service supprt, and tools are widely available.
+
+Before kubernetes
+
+* Each service's monitoring is difficult
+* Scaling a particular service based on load is not possible
+* too much manual intervention required for managing contaners
+* Managing containers on multiple servers become difficult.
+
+(kubernetes being a container orchestration tool, is used when our application is distributed in multiple containers. It's job is to monitor, scale, restart containers automatically even if the are spread across multiple nodes.)
+
+features of kubernetes
+* Managing Multiple containers as one entity
+* Health checks
+* Load Balancing
+* Resource Usage Monitoring
+* Networking
+* Rolling update
+
+How kubernetes works
+
+1) On master
+2) Other are node
+
+Master node schedule continer under node
+monitore node
+keep track of log what operation is running on containers.
+
+Kubernetes architechture. 
+
+kubernetes follows client-server architecture. where in we have master installed on one machine and the node on separate linux machines. Architecture is displayed in the image on the next slide.
+
+Inside master =>
+
+1) ETCD ===>
+	These configurations are accessible only by kubernetes API server as it may have some sensitive information. It is a distributed key value store which is accessible to all.
+(this is also called brain of kubernetes becuase it has all the information which require to run kubernetes.)
+
+2) API Server ==>
+	Kubernetes is an API server which provides all the operation on cluster using the API. API server implements an interface, which means deifferent tools and libraries can readily communicate with it.
+one more packet is kubconfig => Is a package alonge with the server side tools that can be used for communication. It exposes kubernetes API.
+
+Kube-apiserver is designed to scale horizontally that is it scales by deploying more instances. You can run several instance of kube-apiserver and balance traffic between those instances.
+
+3) Kube-controller-manager =>
+	It is the component on the master that runs controllers. Logically, each controller is a separate process, but to reduce complexity, the are all compiled into a single binary and run in a single process. there are various components of this controllers. 
+four kind of kube-controller-manager
+* Node controller : Reponsible for noticing and responding when nodes go down.
+* Replication controller: Responsible for maintaining the correct number of pods for every replication controller object in the system.
+* Endpoint controller: Populates the Endpoints object (that is joins sevices and pods).
+* Service Account & Token Controllers: Create default accounts and API access tokens for new namespaces.
+
+4) Scheduler==>
+	This is one of the key components of kubernetes master. It is a service in master responsible for distributing the workload.
+It is reponsible for tracking utilization of working load on cluster nodes and then placing the workload on which resources are available and accept the workload.
+
+In Other words, this is the mechanism responsible for allocaitng pods to available nodes. The scheduler is responsible for workload utilization and allocating pod to new node.
+
+5) Cloud-controller-manager ==>
+Cloud-controller-manager runs controllers that interact with the underlying cloud providers. cloud-controller-manager allows the cloud vendor's code and the kubernetes code to evolve independently of each other.
+
+there are four type of cloud controller-manager
+* Node controller: For checking the cloud provider to determine if a node has been delted in the cloud after it stops responding.
+* Route Controller: For setting up routes in the underlying cloud infrastructure.
+* Service Controller: for creating, updating and deleting cloud provider load balancers.
+* Volume Controller: For creating, attaching, and mounting volumes, and interacting with the cloud provider to orchestrate volumes.
+
+
+Inside Node====
+
+1) Container Runtime ==
+	Container runtime is the software that is responsible for running containers. Kubernets supports several container runtimes: Docker, containerd, cri-o, rktet, and any implementation of the kubernetes CRI(container runtime interface)
+
+2) Kubelet Service
+this is a small service in each node responsible for relaying information to and from control plane services. It interacts with etcd store to read configuration details and right values.
+kubelet Service communicates with the master component to recieve commands and work. 
+The kuelet process then takes responsiblity for maintaining the state of work and the node server. It manages network rules, port forwarding etc.
+* Maine keubernetes agent
+* registers node with cluster
+* watches apiserver
+* Instantiates pods
+* reports back to master
+* exposes endpoint on : 10255
+
+3) Kubernetes Proxy Service
+
+This is a proxy service that runs on each node and helps in making services available to the external host. It helps in forwarding the request to correct containers and is capable of performing primitive load balancing.
+  It makes sure that the networking environment is predictable and accessible and, at the same time, it is isolated. It manages pods on nodes, volumes, secrets, creating new containers's health checkup, etc. 
+* Pod IP addresses
+	* all containers in a pod share a single iP
+* Load balances across all pods in a service.
+
+
+ADD-ons===>
+	Add-ons use kubernetes resources(daemonSet,
+deployment, etc.) to implement cluster features. Because, these provide cluster-level features and namespaced serouces for add-ons that belong within the kube-system namespance.
+ 
+1) DNS => Cluster DNS is a DNS server, in addition to the other DNS server in our environment, which serves DNS records for Kubernetes services. Containers started by kubernetes automaticall include this DNS server in their DNS searches.
+
+2) Web UI (Dashboard)
+Dashboard is a general-purpose, web-based UI for kubernetes clusters. It allows users to manage and troubleshoot applications running in the cluster, as well as the cluster itself.
+
+3)Container Resource Monitoring
+
+Container resource Monitoring records generic time series metrics about containers in a central database and provides a UI for browsing that data.
+
+4)Cluster-level Logging
+
+A cluster level logging mechanism is responsible for saving container logs to a central log store with a search.browsing interface.
+
+5)Kubectl =
+The kubctl command-line tool interacts with kube-apiserver and sends commands to the master node. Here, each commands is converted into an API call.
+
+Kubernetes objects ===>
+
+
+
+
+
+
+
+
+
